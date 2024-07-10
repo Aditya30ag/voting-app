@@ -9,7 +9,7 @@ export default function Login(props) {
 
   const handleonClick = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:5000/api/auth/login";
+    const url = "https://voting-app-tn5t.onrender.com/api/auth/login";
     const response = await fetch(url, {
       method: "POST",
       headers: {
