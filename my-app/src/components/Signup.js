@@ -13,7 +13,7 @@ export default function Signup(props) {
   const navigate = useNavigate();
   const handleonClick = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:5000/api/auth/createuser";
+    const url = "https://voting-app-tn5t.onrender.com/api/auth/createuser";
     const response = await fetch(url, {
       method: "POST",
       headers: {
