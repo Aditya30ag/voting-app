@@ -2,7 +2,7 @@ import { useState } from "react";
 import Notecontext from "./NotesContext";
 
 const NoteState = (props) => {
-  const host = "http://localhost:5000";
+  const host = "https://voting-app-tn5t.onrender.com";
   const note = [];
 
   const [notes, setnotes] = useState(note);
@@ -10,7 +10,7 @@ const NoteState = (props) => {
   const getNotes = async () => {
     //Add api
     const response = await fetch(
-      "http://localhost:5000/api/notes/fetchallcandidate",
+      "https://voting-app-tn5t.onrender.com/api/notes/fetchallcandidate",
       {
         method: "GET",
         headers: {
@@ -52,7 +52,7 @@ const NoteState = (props) => {
   const getuser = async () => {
     //Add api
     const response = await fetch(
-      "http://localhost:5000/api/auth/getuser",
+      "https://voting-app-tn5t.onrender.com/api/auth/getuser",
       {
         method: "POST",
         headers: {
