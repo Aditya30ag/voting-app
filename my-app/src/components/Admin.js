@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Login(props) {
-  const [credentials, setcredential] = useState({ email: "",aadharNumber:"", password: "" });
+export default function Admin(props) {
+  const [credentials, setcredential] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const [content, setcontent] = useState("");
   const password = document.querySelector("#exampleInputPassword1");
 
   const handleonClick = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:5000/api/auth/login";
+    const url = "http://localhost:5000/api/admin/loginadmin";
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -17,15 +17,14 @@ export default function Login(props) {
       },
       body: JSON.stringify({
         email: credentials.email,
-        aadharNumber: credentials.aadharNumber,
         password: credentials.password,
       }),
     });
     const json = await response.json();
     console.log(json)
     if (json.success === true) {
-      localStorage.setItem("token", json.token);
-      navigate("/home");
+      localStorage.setItem("token1", json.token1);
+      navigate("/homeadmin");
       props.showalert();
     } else {
       props.showalert();
@@ -43,16 +42,23 @@ export default function Login(props) {
     setcontent("");
   };
   return (
-    <div className="container" style={{minHeight:'595px',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
-      <h1>
-        Login into a Account
-      </h1>
+    <div
+      className="container"
+      style={{
+        minHeight: "595px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <h1>Login into a Admin Account</h1>
       <div
         className="container"
         style={{
           marginTop: "20px",
           maxWidth: "500px",
-          minHeight: "420px",
+          minHeight: "340px",
           border: "2px solid black",
           boxSizing: "border-box",
           paddingTop: "40px",
@@ -72,20 +78,6 @@ export default function Login(props) {
               aria-describedby="emailHelp"
               name="email"
               value={credentials.email}
-              onChange={onchange}
-            />
-          </div>
-          
-          <div className="mb-3">
-            <label htmlFor="exampleInputaadharNumber1" className="form-label">
-              AadharNumber
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="exampleInputaadharNumber1"
-              name="aadharNumber"
-              value={credentials.aadharNumber}
               onChange={onchange}
             />
           </div>
@@ -110,7 +102,7 @@ export default function Login(props) {
           >
             Login
           </button>
-          <Link to="/signup" style={{ textDecoration: "none" }}>
+          <Link to="/signupadmin" style={{ textDecoration: "none" }}>
             <p onClick={props.handleonClick2}> Don't have an account..SignUp</p>
           </Link>
         </form>

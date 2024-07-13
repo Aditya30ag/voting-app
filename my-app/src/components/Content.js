@@ -20,7 +20,7 @@ export default function Content(props) {
   return (
     <>
     <div className="container my-4">
-      <div className="container" style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
+      <div className="container" style={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column",boxSizing: "border-box"}}>
         { 
           a.notes.map((note) => {
             return (

@@ -10,8 +10,13 @@ import NoteState from './context/notes/NoteState';
 import End from "./components/End";
 import Main from "./components/Main";
 import './App.css';
+import Admin from "./components/Admin";
+import Homeadmin from "./components/Homeadmin";
+import Signupadmin from "./components/Signupadmin";
 
 function App() {
+  document.body.style.background="linear-gradient(#E2EAF4,white)";
+  document.body.style.backgroundRepeat='no-repeat';
   const [progress, setprogress] = useState(0);
   const showalert = () => {
     setTimeout(() => {
@@ -71,6 +76,36 @@ function App() {
           <Navbar showalert={showalert} handleonClick2={handleonClick2} />
           <LoadingBar color="#000" progress={progress} />
           <div className='container'><Login showalert={showalert} handleonClick2={handleonClick2}/></div>
+        </>
+      ),
+    },
+    {
+      path: "/admin",
+      element: (
+        <>
+          <Navbar showalert={showalert} handleonClick2={handleonClick2} />
+          <LoadingBar color="#000" progress={progress} />
+          <div className='container'><Admin showalert={showalert} handleonClick2={handleonClick2}/></div>
+        </>
+      ),
+    },
+    {
+      path: "/signupadmin",
+      element: (
+        <>
+          <Navbar showalert={showalert} handleonClick2={handleonClick2} />
+          <LoadingBar color="#000" progress={progress} />
+          <div className='container'><Signupadmin showalert={showalert} handleonClick2={handleonClick2}/></div>
+        </>
+      ),
+    },
+    {
+      path: "/homeadmin",
+      element: (
+        <>
+          <Navbar showalert={showalert} handleonClick2={handleonClick2} />
+          <LoadingBar color="#000" progress={progress} />
+          <div className='container'><Homeadmin/></div>
         </>
       ),
     },

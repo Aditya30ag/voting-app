@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Signup(props) {
+export default function Signupadmin(props) {
   const [credentials, setcredential] = useState({
     name: "",
     email: "",
-    aadharNumber: "",
     password: "",
   });
   const [content, setcontent] = useState("");
@@ -13,7 +12,7 @@ export default function Signup(props) {
   const navigate = useNavigate();
   const handleonClick = async (e) => {
     e.preventDefault();
-    const url = "http://localhost:5000/api/auth/createuser";
+    const url = "http://localhost:5000/api/admin/createadmin";
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -21,15 +20,14 @@ export default function Signup(props) {
       },
       body: JSON.stringify({
         name: credentials.name,
-        aadharNumber: credentials.aadharNumber,
         email: credentials.email,
         password: credentials.password,
       }),
     });
     const json = await response.json();
     if (json.success === true) {
-      localStorage.setItem("token", json.token);
-      navigate("/home");
+      localStorage.setItem("token1", json.token1);
+      navigate("/homeadmin");
       props.handleonClick2();
     } else {
       props.showalert();
@@ -45,22 +43,22 @@ export default function Signup(props) {
   return (
     <>
       <div
-        className="container"
+        className="container my-4"
         style={{
-          minHeight: "615px",
+          minHeight: "505px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <h1>Create a new Account</h1>
+        <h1>Create a new Admin Account</h1>
         <div
           className="container"
           style={{
             marginTop: "20px",
             maxWidth: "500px",
-            minHeight: "440px",
+            minHeight: "400px",
             border: "2px solid black",
             boxSizing: "border-box",
             paddingTop: "0px",
@@ -101,19 +99,6 @@ export default function Signup(props) {
               </p>
             </div>
             <div className="mb-3 my-2">
-              <label htmlFor="exampleInputaadharNumber1" className="form-label">
-                AadharNumber
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="exampleInputaadharNumber1"
-                name="aadharNumber"
-                value={credentials.aadharNumber}
-                onChange={onchange}
-              />
-            </div>
-            <div className="mb-3 my-2">
               <label htmlFor="exampleInputPassword1" className="form-label">
                 Password
               </label>
@@ -133,7 +118,7 @@ export default function Signup(props) {
             >
               SignUp
             </button>
-            <Link to="/login" style={{ textDecoration: "none" }}>
+            <Link to="/admin" style={{ textDecoration: "none" }}>
               <p onClick={props.handleonClick2}>
                 {" "}
                 Already have an account.. Login

@@ -8,11 +8,12 @@ export default function Navbar(props) {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("token1");
     navigate("/");
     props.showalert();
   };
   return (
-    <nav className={`navbar navbar-expand-lg navbar-${location.pathname === "/" ? "dark" : "light"}`} style={{backgroundColor:"transparent",zIndex:'10'}}>
+    <nav className={`navbar navbar-expand-lg navbar-${location.pathname === "/" ? "light" : "light"}`} style={{backgroundColor:"transparent",zIndex:'10'}}>
       <div className="container-fluid">
         <Link className="navbar-brand" to="/" onClick={props.handleonClick2}>
           Navbar
@@ -56,7 +57,9 @@ export default function Navbar(props) {
               </Link>
             </li>
           </ul>
-          {!localStorage.getItem("token") ? (
+          {!localStorage.getItem("token")&&!localStorage.getItem("token1")? (
+            
+            <div style={{display:location.pathname === "/login"||location.pathname === "/signup"||location.pathname === "/admin"?'flex':'none'}}>
             <form className="d-flex" role="search">
               <Link to="/login">
                 <button
@@ -78,6 +81,7 @@ export default function Navbar(props) {
                 </button>
               </Link>
             </form>
+            </div>
           ) : (
             <>
               <button className="btn btn-outline-primary" onClick={logout}>
