@@ -15,6 +15,13 @@ export default function Main() {
   }, []);
   const handleonclickdir=(e)=>{
     navigate(`${e.target.value}`);
+    if (localStorage.getItem('token')){
+      localStorage.removeItem('token')
+    }else if (localStorage.getItem('token1')){
+      localStorage.removeItem('token1')
+    }else{
+      
+    }
   }
   return (
     <div
