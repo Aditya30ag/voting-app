@@ -90,10 +90,37 @@ const NoteState = (props) => {
     }}
     setuser(newNotes);*/
   };
-
+  const deletecandidate = async (id) => {
+    //Add api
+    const response = await fetch(
+      `http://localhost:5000/api/notes/deletecandidate/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          token1: localStorage.getItem('token1'),
+        },
+      });
+    const json = await response.json();
+    console.log(json)
+  };
+  const addcandidate=async(name,party)=>{
+    const response = await fetch(
+      `http://localhost:5000/api/notes/addcandidate`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          token1: localStorage.getItem('token1'),
+        },
+        body: JSON.stringify({ name,party}),
+      })
+      const json=await response.json();
+      setnotes(notes.concat(json));
+  }
   return (
     <Notecontext.Provider
-      value={{ notes, getNotes, updatecandidate,user,getuser,updateuser}}
+      value={{ notes, getNotes, updatecandidate,user,getuser,updateuser,deletecandidate,addcandidate}}
     >
       {props.children}
     </Notecontext.Provider>

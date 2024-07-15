@@ -6,8 +6,10 @@ export default function About() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       
-    } else {
-      navigate("/login");
+    } else if(localStorage.getItem("token")){
+
+    }else {
+      navigate("/");
     }
     // eslint-disable-next-line
   }, []);

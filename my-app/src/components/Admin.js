@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Admin(props) {
   const [credentials, setcredential] = useState({ email: "", password: "" });
@@ -58,7 +58,7 @@ export default function Admin(props) {
         style={{
           marginTop: "20px",
           maxWidth: "500px",
-          minHeight: "340px",
+          minHeight: "320px",
           border: "2px solid black",
           boxSizing: "border-box",
           paddingTop: "40px",
@@ -102,9 +102,6 @@ export default function Admin(props) {
           >
             Login
           </button>
-          <Link to="/signupadmin" style={{ textDecoration: "none" }}>
-            <p onClick={props.handleonClick2}> Don't have an account..SignUp</p>
-          </Link>
         </form>
       </div>
     </div>

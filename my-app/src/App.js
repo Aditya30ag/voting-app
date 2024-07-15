@@ -13,6 +13,7 @@ import './App.css';
 import Admin from "./components/Admin";
 import Homeadmin from "./components/Homeadmin";
 import Signupadmin from "./components/Signupadmin";
+import Addcandidate from "./components/Addcandidate";
 
 function App() {
   document.body.style.background="linear-gradient(#E2EAF4,white)";
@@ -105,7 +106,7 @@ function App() {
         <>
           <Navbar showalert={showalert} handleonClick2={handleonClick2} />
           <LoadingBar color="#000" progress={progress} />
-          <div className='container'><Homeadmin/></div>
+          <div className='container'><Homeadmin showalert={showalert} handleonClick2={handleonClick2}/></div>
         </>
       ),
     },
@@ -116,6 +117,16 @@ function App() {
           <Navbar showalert={showalert} handleonClick2={handleonClick2} />
           <LoadingBar color="#000" progress={progress} />
           <div className='container'><Signup showalert={showalert} handleonClick2={handleonClick2}/></div>
+        </>
+      ),
+    },
+    {
+      path: "/addcandidate",
+      element: (
+        <>
+          <Navbar showalert={showalert} handleonClick2={handleonClick2} />
+          <LoadingBar color="#000" progress={progress} />
+          <div className='container'><Addcandidate showalert={showalert} handleonClick2={handleonClick2}/></div>
         </>
       ),
     },

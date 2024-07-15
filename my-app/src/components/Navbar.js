@@ -11,7 +11,12 @@ export default function Navbar(props) {
     localStorage.removeItem("token1");
     navigate("/");
     props.showalert();
+    props.handleonClick2();
   };
+  const exit =async()=>{
+    props.handleonClick2();
+    navigate(`${location.pathname}`);
+  }
   return (
     <nav className={`navbar navbar-expand-lg navbar-${location.pathname === "/" ? "light" : "light"}`} style={{backgroundColor:"transparent",zIndex:'10'}}>
       <div className="container-fluid">
@@ -32,16 +37,16 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link
+              <div
                 className={
                   location.pathname === "/" ? "nav-link active" : "nav-link"
                 }
-                onClick={props.handleonClick2}
+                onClick={exit}
                 aria-current="page"
-                to="/home"
+                style={{cursor:"pointer"}}
               >
                 Home
-              </Link>
+              </div>
             </li>
             <li className="nav-item">
               <Link
@@ -70,7 +75,7 @@ export default function Navbar(props) {
                 >
                   Login
                 </button>
-              </Link>
+              </Link>{location.pathname !== "/admin"&&
               <Link to="/signup">
                 <button
                   className="btn btn-outline-primary"
@@ -79,7 +84,8 @@ export default function Navbar(props) {
                 >
                   SignUp
                 </button>
-              </Link>
+             
+              </Link> }
             </form>
             </div>
           ) : (

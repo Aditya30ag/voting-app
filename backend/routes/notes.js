@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Notes = require("../models/Notes.js");
 const { body, validationResult } = require("express-validator");
-const fetchuser = require("../middleware/fetchuser.js");
+const fetchuser1 = require("../middleware/fetchuser1.js");
 
 router.get("/fetchallcandidate", async (req, res) => {
   try {
@@ -78,6 +78,27 @@ router.put("/updatecandidate/:id", async (req, res) => {
   } catch (error) {
     console.error(error.message);
     res.status(500).send("some error occur");
+  }
+});
+router.delete("/deletecandidate/:id",fetchuser1,async (req, res) => {
+  try{
+    let notes = await Notes.findById( req.params.id );
+
+    if (!notes) {
+      return res.status(404).send("please use the correct credential" );
+    }
+
+    /*if (notes.user.toString() !== req.user.id) {
+      return res.status(401).send("Not allowed");
+    }*/
+
+
+    notes = await Notes.findByIdAndDelete(req.params.id);
+    res.json({"success":"the note has been deleted"});
+
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("some error occured");
   }
 });
 module.exports=router
